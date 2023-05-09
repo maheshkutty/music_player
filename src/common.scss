@@ -1,0 +1,177 @@
+%common {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  .items {
+    flex: 1;
+  }
+}
+
+%color_text {
+  color: var(--colorFg);
+}
+
+:root {
+  --bodyColor: "#000000";
+  --colorFg: "#ffffff";
+  --gradcolor: "#ffffff";
+}
+
+body {
+  background-color: var(--bodyColor);
+  background: linear-gradient(
+      150.18deg,
+      var(--bodyColor) 50.46%,
+      rgba(0, 0, 0, 0) 99.84%
+    ),
+    #353739;
+  color: var(--colorFg);
+  font-size: 1rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.main {
+  @extend %common;
+  gap: 3rem;
+  .item1 {
+    flex: 1;
+  }
+  .item2 {
+    flex: 4;
+  }
+  .item3 {
+    flex: 1;
+  }
+}
+
+.container1 {
+  @extend %common;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.sliderContainer {
+  @extend %common;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  .item{
+    flex: 1;
+  }
+}
+
+.container2 {
+  @extend %common;
+  padding: 0;
+  flex-direction: column;
+  .title {
+    @extend %color_text;
+    font-size: 2rem;
+    margin: 0;
+    font-weight: bold;
+  }
+  .desc {
+    @extend %color_text;
+    opacity: 0.8;
+    font-size: 1rem;
+    margin-block: 5px;
+  }
+}
+
+.banner_wrap {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 0.5rem;
+  img {
+    object-fit: contain;
+  }
+}
+
+.tracksList {
+  padding: 0.5rem;
+  opacity: 0.4;
+  color: var(--colorFg);
+  &:hover {
+    cursor: pointer;
+  }
+  .title {
+    @extend %color_text;
+  }
+}
+
+.songList {
+  color: var(--colorFg);
+  &:hover {
+    cursor: pointer;
+  }
+  .title {
+    @extend %color_text;
+  }
+  .desc {
+    @extend %color_text;
+    font-size: 0.7rem;
+  }
+}
+
+.active {
+  background-color: rgba(255, 255, 255, 0.08);
+  opacity: 1;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.icon {
+  color: white;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+  %common_menu {
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    background-color: var(--bodyColor);
+  }
+  .specialIcon {
+    display: inline;
+    cursor: pointer;
+  }
+  .main {
+    @extend %common;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    .item1 {
+      @extend %common_menu;
+      left: 0;
+      width: 10rem;
+      height: 100%;
+    }
+    .item2 {
+      @extend %common_menu;
+      right: 0;
+      width: 20rem;
+      height: 100%;
+    }
+    .item3 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hideEle {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .specialIcon {
+    display: none;
+  }
+}
