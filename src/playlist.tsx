@@ -7,8 +7,8 @@ import { SongContext, SongsListSchema } from "./context/songContext";
 import "./common.scss";
 
 export const PlayList: React.FC = () => {
-  const [songs, setSongs] = useState<Array<SongsListSchema>>([]);
   const { state, dispatch } = useContext(SongContext);
+  const [songs, setSongs] = useState<Array<SongsListSchema>>([]);
   useEffect(() => {
     setSongs(state.songs)
   }, [state.songs])

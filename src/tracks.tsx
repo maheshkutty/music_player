@@ -4,17 +4,13 @@ import { spotifyApi } from "./api";
 import "./common.scss";
 import { SongContext, getSongsByTrack } from "./context/songContext";
 
-interface TracksProps {
-  selected: Number;
-  onChange: (id: Number) => void;
-}
-
 interface TrackListSchema {
   id: Number;
   title: string;
 }
 
-export const Tracks: React.FC<TracksProps> = ({ selected, onChange }) => {
+export const Tracks: React.FC = () => {
+  const [selectedTracks, setSelectedTracks] = useState<Number>(1);
   const [trackList, setTrackList] = useState<TrackListSchema[]>([]);
   const { dispatch } = useContext(SongContext);
   useEffect(() => {
@@ -29,13 +25,14 @@ export const Tracks: React.FC<TracksProps> = ({ selected, onChange }) => {
         }`
       });
       setTrackList(tracks.data.data.getPlaylists);
+      const { data } = await getSongsByTrack(0);
+      dispatch({ type: "track", songs: data.getSongs, firstLoad: true })
     }
     callApi();
   }, [])
 
-
   const fillSongs = async (id: Number) => {
-    onChange(id)
+    setSelectedTracks(id)
     const { data } = await getSongsByTrack(id);
     dispatch({ type: "track", songs: data.getSongs, firstLoad: true })
   }
@@ -49,7 +46,7 @@ export const Tracks: React.FC<TracksProps> = ({ selected, onChange }) => {
       bordered={false}
       dataSource={trackList}
       renderItem={(item) => (
-        <div className={`tracksList ${item.id === selected ? 'active' : ''}`} onClick={() => {
+        <div className={`tracksList ${item.id === selectedTracks ? 'active' : ''}`} onClick={() => {
           fillSongs(item.id)
         }}>
           <Typography.Text className="title">{item.title}</Typography.Text>

@@ -79,11 +79,10 @@ export const Player: React.FC<PlayerProps> = (props) => {
       if (imgRef.current?.complete) {
         imgRef.current.crossOrigin = "Anonymos";
         const colorRGB = colorThief.getColor(imgRef.current);
-        const colorHex = setColor(rgbToHex(colorRGB[0], colorRGB[1], colorRGB[2]))
-        console.log(colorHex);
+        setColor(rgbToHex(colorRGB[0], colorRGB[1], colorRGB[2]))
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -94,7 +93,7 @@ export const Player: React.FC<PlayerProps> = (props) => {
   }
 
   return (
-    (song._id !== "") ? <div className={`container2`}>
+    <div className={`container2`}>
       <ReactPlayer
         style={{ display: "none" }}
         ref={rPlayer}
@@ -111,7 +110,7 @@ export const Player: React.FC<PlayerProps> = (props) => {
         <p className="desc">{song?.artist}</p>
       </div>
       <div style={{ margin: 0 }}>
-        <img ref={imgRef} src={song?.photo} className="banner_wrap" onLoad={extractColor} />
+        <img ref={imgRef} src={song.photo ? song.photo : "music.png"} className="banner_wrap" onLoad={extractColor} />
       </div>
       <div className="sliderContainer">
         <input
@@ -139,6 +138,6 @@ export const Player: React.FC<PlayerProps> = (props) => {
           <FontAwesomeIcon icon={faEllipsisVertical} size="lg" />
         </div>
       </div>
-    </div> : null
+    </div>
   )
 }

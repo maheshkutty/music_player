@@ -17,7 +17,7 @@
   --gradcolor: "#ffffff";
 }
 
-body {
+html, body {
   background-color: var(--bodyColor);
   background: linear-gradient(
       150.18deg,
@@ -29,6 +29,7 @@ body {
   font-size: 1rem;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  height: 100%;
 }
 
 body::-webkit-scrollbar {
