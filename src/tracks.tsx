@@ -26,7 +26,7 @@ export const Tracks: React.FC = () => {
       });
       setTrackList(tracks.data.data.getPlaylists);
       const { data } = await getSongsByTrack(0);
-      dispatch({ type: "track", songs: data.getSongs, firstLoad: true })
+      dispatch({ type: "track", songs: data.getSongs, firstLoad: true, title: tracks.data.data.getPlaylists[0].title })
     }
     callApi();
   }, [])
@@ -34,7 +34,7 @@ export const Tracks: React.FC = () => {
   const fillSongs = async (id: Number) => {
     setSelectedTracks(id)
     const { data } = await getSongsByTrack(id);
-    dispatch({ type: "track", songs: data.getSongs, firstLoad: true })
+    dispatch({ type: "track", songs: data.getSongs, firstLoad: true, title: trackList[Number(id) - 1].title })
   }
 
   if (trackList.length === 0) {
@@ -42,16 +42,19 @@ export const Tracks: React.FC = () => {
   }
 
   return (
-    <List
-      bordered={false}
-      dataSource={trackList}
-      renderItem={(item) => (
-        <div className={`tracksList ${item.id === selectedTracks ? 'active' : ''}`} onClick={() => {
-          fillSongs(item.id)
-        }}>
-          <Typography.Text className="title">{item.title}</Typography.Text>
-        </div>
-      )}
-    />
+    <>
+      <img src="spotify.png" className="logo" />
+      <List
+        bordered={false}
+        dataSource={trackList}
+        renderItem={(item) => (
+          <div className={`tracksList ${item.id === selectedTracks ? 'active' : ''}`} onClick={() => {
+            fillSongs(item.id)
+          }}>
+            <Typography.Text className="title">{item.title}</Typography.Text>
+          </div>
+        )}
+      />
+    </>
   )
 }

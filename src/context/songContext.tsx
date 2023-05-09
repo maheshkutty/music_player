@@ -35,13 +35,15 @@ export interface SongsListSchema {
 type SongData = {
   songs: Array<SongsListSchema>;
   selected: number;
-  firstLoad: boolean,
+  firstLoad: boolean;
+  title: string;
 }
 
 type Action = {
   type: "track",
   songs: Array<SongsListSchema>,
   firstLoad: boolean
+  title: string;
 } | {
   type: "select",
   id: number
@@ -55,6 +57,7 @@ const initialState = {
   songs: [],
   selected: -1,
   firstLoad: false,
+  title: ""
 }
 
 export const SongContext = createContext<{
@@ -72,6 +75,7 @@ function reducers(data: SongData, action: Action): SongData {
         ...data,
         songs: action.songs,
         firstLoad: action.firstLoad,
+        title: action.title
       }
     case 'select':
       return {

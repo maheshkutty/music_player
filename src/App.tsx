@@ -21,14 +21,14 @@ function App() {
 
   return (
     <SongProvider>
-      <div className="main">
+      <div className="main" onClick={hideAllOverlap}>
         <div className={`item1 ${!showTracks ? 'hideEle' : ''}`}>
           <Tracks />
         </div>
         <div className={`item2 ${!showSongsList ? 'hideEle' : ''}`}>
           <PlayList />
         </div>
-        <div className="item3" onClick={hideAllOverlap}>
+        <div className="item3">
           <Player setShowTracks={() => setShowTracks(!showTracks)} setShowSongsList={() => setShowSongsList(!showSongsList)} />
         </div>
       </div>

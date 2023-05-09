@@ -24,12 +24,15 @@ export const PlayList: React.FC = () => {
     dispatch({ type: "select", id });
   }
 
-  if(!state.firstLoad) {
+  if (!state.firstLoad) {
     return <Skeleton />
   }
 
   return (
     <div>
+      <div>
+        <Typography.Title className="header">{state.title}</Typography.Title>
+      </div>
       <ConfigProvider theme={{
         token: {
           colorText: "white",
@@ -59,7 +62,7 @@ export const PlayList: React.FC = () => {
               </List.Item>)}
             </VirtualList>
           </List>) : null
-       }
+      }
     </div>
   )
 }

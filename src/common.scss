@@ -44,6 +44,10 @@ body::-webkit-scrollbar {
   }
   .item2 {
     flex: 4;
+    .header{
+      color: var(--colorFg);
+      margin: 0 0 1rem 0;
+    }
   }
   .item3 {
     flex: 1;
@@ -138,6 +142,7 @@ body::-webkit-scrollbar {
     top: 0;
     z-index: 99;
     background-color: var(--bodyColor);
+    padding-inline: 0.5rem;
   }
   .specialIcon {
     display: inline;
@@ -175,4 +180,10 @@ body::-webkit-scrollbar {
   .specialIcon {
     display: none;
   }
+}
+
+.logo{
+  width: 10rem;
+  height: 3rem;
+  margin-bottom: 1rem;
 }
